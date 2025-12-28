@@ -117,7 +117,6 @@
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 10px rgba(74, 166, 140, 0.2);
             position: relative;
             overflow: hidden;
-            /* clip-path removed on mobile via media query for safety, kept here for desktop */
             clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%);
         }
 
@@ -476,7 +475,7 @@
     </div>
     <nav>
         <a onclick="showView('home')">Home</a>
-        <a onclick="showView('company')">Company Info</a>
+        <a onclick="showView('company')">About us</a>
         <a onclick="showView('partnership')">Partnerships</a>
         <a onclick="showView('report')">Report a Driver</a>
         <a onclick="showView('login')" class="portal-btn">Driver Portal</a>
@@ -508,12 +507,24 @@
                     <h3>Growth</h3>
                     <p>Rank up through our driver levels and take on more challenging specialized hauls.</p>
                 </div>
+                <div class="feature-item">
+                    <h3>You</h3>
+                    <p>We need you to help us grow you joining our staff team or driver help us more and more.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW TESTIMONIALS SECTION -->
+        <div class="card" style="margin-top: 30px;">
+            <h2 style="text-align: center; margin-bottom: 20px;">What Our Drivers Say</h2>
+            <div id="publicTestimonials" class="feature-grid">
+                <!-- Dynamically populated from Javascript -->
             </div>
         </div>
     </div>
 </div>
 
-<!-- COMPANY INFO VIEW -->
+<!-- COMPANY INFO VIEW (RESTORED) -->
 <div id="companyView" class="page-view">
     <section class="hero" id="companyHero">
         <h1 class="hero-title">Our Organization</h1>
@@ -522,7 +533,7 @@
     <div class="content-section">
         <div class="card">
             <h2>About NorthStar</h2>
-            <p style="margin-top: 15px; color: #8b9eb3;">NorthStar Logistics started as a small group of friends and has grown into a respected Virtual Trucking Company. Our mission is to provide the most realistic logistics experience in the simulation world.</p>
+            <p style="margin-top: 15px; color: #8b9eb3;">NorthStar Logistics started as a small group of friends and has grown into a respected Virtual Trucking Company. Our mission is to provide the most realistic logistics experience in the VTC.</p>
             
             <div class="responsive-grid" style="margin-top: 30px;">
                 <div class="feature-item">
@@ -542,7 +553,7 @@
 <div id="partnershipView" class="page-view">
     <section class="hero" id="partnerHero">
         <h1 class="hero-title">Our Partners</h1>
-        <p class="hero-sub">Collaborating with the best in the industry to enhance our services.</p>
+        <p class="hero-sub">Collaborating with the best in the VTC industry to help others.</p>
     </section>
     <div class="content-section">
         <div class="card">
@@ -558,7 +569,7 @@
 <div id="reportView" class="page-view">
     <section class="hero" id="reportHero">
         <h1 class="hero-title">Public Reporting</h1>
-        <p class="hero-sub">Help us maintain our professional standards. Submit reports for reckless driving or misconduct.</p>
+        <p class="hero-sub">Help us maintain our professional standards. Submit reports for reckless driving or misused tags, livery.</p>
     </section>
     <div class="content-section">
         <div class="card">
@@ -575,10 +586,23 @@
                     <input type="datetime-local" id="repDateTime">
                 </div>
             </div>
-            <div class="input-group">
-                <label>Evidence Link (Video/Screenshot)</label>
-                <input type="text" id="repEvidence" placeholder="https://youtube.com/... or Imgur link">
+            
+            <div class="responsive-grid">
+                <div class="input-group">
+                    <label>Type of Incident</label>
+                    <select id="repReason">
+                        <option>Reckless Driving</option>
+                        <option>Ramming / Trolling</option>
+                        <option>Verbal Harassment</option>
+                        <option>VTC Rule Violation</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Evidence Link (Video/Screenshot)</label>
+                    <input type="text" id="repEvidence" placeholder="https://youtube.com/... or Imgur link">
+                </div>
             </div>
+
             <div class="input-group">
                 <label>Description of Incident</label>
                 <textarea id="repDesc" rows="4" placeholder="Explain what happened..."></textarea>
@@ -627,6 +651,7 @@
             <button class="sidebar-btn" id="btnDInsights" onclick="switchTab('driver', 'insights')">Insights</button>
             <button class="sidebar-btn" id="btnDLoa" onclick="switchTab('driver', 'loa')">Request LOA</button>
             <button class="sidebar-btn" id="btnDHistory" onclick="switchTab('driver', 'history')">History</button>
+            <button class="sidebar-btn" id="btnDFeedback" onclick="switchTab('driver', 'feedback')">Feedback</button>
             <hr style="border:0; border-top:1px solid #30363d; margin: 20px 0;">
             <button class="sidebar-btn" style="color:#e74c3c" onclick="logout()">Logout</button>
         </aside>
@@ -684,10 +709,10 @@
                 <div class="insight-card">
                     <h4>Pre-Trip Inspection Checklist</h4>
                     <ul>
-                        <li>Verify tire pressure and tread depth on both truck and trailer.</li>
-                        <li>Ensure all lights (headlights, signals, brake lights) are operational.</li>
-                        <li>Check fluid levels: Oil, Coolant, and Diesel Exhaust Fluid (DEF).</li>
-                        <li>Secure all cargo latches and verify weight distribution.</li>
+                        <li>Verify you got your truck and trailer befor starting a job.</li>
+                        <li>Ensure all lights (headlights, signals, brake lights) are operational and is not blocked.</li>
+                        <li>Check fluid levels: Diesel And Fluid (REQ).</li>
+                        <li>Secure your truck and trailer.</li>
                     </ul>
                 </div>
 
@@ -696,7 +721,7 @@
                     <ul>
                         <li>Maintain a 4-second following distance in clear conditions.</li>
                         <li>Observe all regional speed limits; company maximum is 90km/h (56mph).</li>
-                        <li>Use indicators at least 3 seconds before initiating any lane change.</li>
+                        <li>Use indicators at least 4 seconds before initiating any lane change.</li>
                         <li>Dim high beams when within 500ft of oncoming traffic.</li>
                     </ul>
                 </div>
@@ -704,9 +729,9 @@
                 <div class="insight-card">
                     <h4>Adverse Weather Procedures</h4>
                     <ul>
-                        <li><strong>Heavy Rain/Fog:</strong> Reduce speed by 20% and increase following distance to 8 seconds.</li>
+                        <li><strong>Heavy Rain/Fog:</strong> Reduce speed by 10% and increase following distance to 8 seconds.</li>
                         <li><strong>Snow/Ice:</strong> Avoid sudden braking; use engine braking (Jake brakes) cautiously to prevent jackknifing.</li>
-                        <li>If visibility drops below 35 meters, pull over to a safe rest area until conditions improve.</li>
+                        <li>If visibility drops below 35 meters, drive safe and dont do anything dum.</li>
                     </ul>
                 </div>
 
@@ -714,9 +739,9 @@
                     <h4>Incident Management</h4>
                     <ul>
                         <li>In the event of a collision, immediately engage hazard lights.</li>
-                        <li>Capture screenshots or video evidence of the scene and participants.</li>
-                        <li>Do not engage in verbal altercations; record IDs and report via the Portal.</li>
-                        <li>Contact Staff via Discord if emergency assistance is required.</li>
+                        <li>Capture video evidence of the scene and participants.</li>
+                        <li>Do not engage in verbal altercations; record IDs and report via discord.</li>
+                        <li>Contact Staff via Discord if required.</li>
                     </ul>
                 </div>
             </div>
@@ -755,6 +780,31 @@
                     </table>
                 </div>
             </div>
+
+            <!-- FEEDBACK TAB -->
+            <div id="tabDFeedback" class="tab-content">
+                <h2>Driver Feedback & Testimonials</h2>
+                <div class="card" style="margin-top: 20px;">
+                    <p style="margin-bottom: 20px; color: #8b9eb3;">Submit internal feedback or share a public testimonial for the home page.</p>
+                    <div class="input-group">
+                        <label>Topic</label>
+                        <select id="feedTopic">
+                            <option>Public Testimonial</option>
+                            <option>General Suggestion</option>
+                            <option>Company Complaint</option>
+                            <option>Event Idea</option>
+                            <option>Website Issue</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea id="feedMsg" rows="5" placeholder="Type your feedback here..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%" onclick="submitDriverFeedback()">Send Feedback</button>
+                </div>
+            </div>
+
+            <!-- (REMOVED INTERNAL REPORT TAB AS REQUESTED) -->
         </main>
     </div>
 </div>
@@ -769,6 +819,7 @@
             <button class="sidebar-btn" id="btnAReports" onclick="switchTab('admin', 'reports')">
                 Reports <span class="sidebar-badge" id="reportBadge" style="display:none">0</span>
             </button>
+            <button class="sidebar-btn" id="btnAFeedback" onclick="switchTab('admin', 'feedback')">Feedback</button>
             <button class="sidebar-btn" id="btnAAccount" onclick="switchTab('admin', 'account')">
                 Account <span class="sidebar-badge" id="forgotBadge" style="display:none">0</span>
             </button>
@@ -846,6 +897,12 @@
                 <div id="adminReportList" style="display:grid; gap:15px;"></div>
             </div>
 
+            <!-- FEEDBACK TAB (NEW) -->
+            <div id="tabAFeedback" class="tab-content">
+                <h2>Driver Feedback</h2>
+                <div id="adminFeedbackList" style="display:grid; gap:15px; margin-top:20px;"></div>
+            </div>
+
             <div id="tabAAccount" class="tab-content">
                 <h2>Account Access Requests</h2>
                 <div class="table-wrapper">
@@ -860,7 +917,7 @@
                 <h2>All Company Logs</h2>
                 <div class="table-wrapper">
                     <table class="data-table">
-                        <thead><tr><th>Driver</th><th>Route</th><th>Cargo</th><th>Action</th></tr></thead>
+                        <thead><tr><th>Driver</th><th>Source City</th><th>Destination</th><th>Cargo Type</th><th>Job Time</th><th>Income</th><th>Action</th></tr></thead>
                         <tbody id="adminGlobalList"></tbody>
                     </table>
                 </div>
@@ -882,7 +939,7 @@
                     <h4>Add New Partner</h4>
                     <div class="responsive-grid" style="margin-top:15px;">
                         <div class="input-group"><label>Partner Name</label><input type="text" id="partnerNameInput"></div>
-                        <div class="input-group"><label>Role / Description</label><input type="text" id="partnerRoleInput"></div>
+                        <div class="input-group"><label>Description</label><input type="text" id="partnerRoleInput"></div>
                     </div>
                     <div class="input-group"><label>Image URL (Logo)</label><input type="text" id="partnerImgInput"></div>
                     <button class="btn btn-success" onclick="adminAddPartner()" style="width:100%">Add to Affiliates</button>
@@ -932,7 +989,7 @@
     </div>
 </div>
 
-<footer>&copy; 2025 NorthStar Logistics | Professional Trucking Simulations</footer>
+<footer>&copy; 2025 NorthStar Logistics | Join our fleet</footer>
 
 <script>
     let editingBulletinId = null;
@@ -943,12 +1000,16 @@
         loas: [], 
         forgotRequests: [],
         reports: [],
+        feedbacks: [
+            // Pre-populated testimonial example
+            { id: 99, driver: "Driver_Admin", topic: "Public Testimonial", message: "This is the best VTC I have ever been a part of. Great community!", time: "12/12/2024" }
+        ], 
         bulletins: [
             { id: 1, title: "Company Convoy: Weekend Run", body: "Meeting at Berlin Garage this Saturday. Be there with a clean rig!" },
             { id: 2, title: "Economy Update", body: "Cargo rates for heavy machinery have increased by 5% this week." }
         ],
-        admins: [{ id: "sprogg28", pass: "Fast&Truck4", rank: "Owner" }],
-        ranks: ["Trainee", "Junior Driver", "Driver", "Staff", "Convoy Team", "Management"],
+        admins: [{ id: "e", pass: "e", rank: "Owner" }],
+        ranks: ["Trainee", "Junior Driver", "Driver"],
         manualStats: { drivers: 0, jobs: 0 },
         assets: {
             homeHero: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=2000',
@@ -969,6 +1030,7 @@
 
         document.getElementById('mainHeader').style.display = viewId.includes('Panel') ? 'none' : 'flex';
         
+        if (viewId === 'home') renderPublicTestimonials(); // Added render call
         if (viewId === 'partnership') renderPublicPartners();
         if (viewId === 'company') updatePublicCounters();
         if (viewId === 'adminPanel') {
@@ -977,6 +1039,7 @@
             renderAdminForgot();
             renderAdminReports();
             renderAdminBulletins();
+            renderAdminFeedback(); // Initial render for feedback
             document.getElementById('editActiveDrivers').value = state.manualStats.drivers;
             document.getElementById('editJobsCompleted').value = state.manualStats.jobs;
             document.getElementById('heroHomeUrl').value = state.assets.homeHero;
@@ -1018,6 +1081,7 @@
         if (tab === 'partners') renderAdminPartners();
         if (tab === 'reports') renderAdminReports();
         if (tab === 'bulletins') renderAdminBulletins();
+        if (tab === 'feedback') renderAdminFeedback(); // Render feedback when tab is clicked
     }
 
     function setAuthMode(mode) {
@@ -1123,6 +1187,7 @@
     function submitPublicReport() {
         const dId = document.getElementById('repDriverId').value.trim();
         const dTime = document.getElementById('repDateTime').value;
+        const reason = document.getElementById('repReason').value;
         const ev = document.getElementById('repEvidence').value.trim();
         const desc = document.getElementById('repDesc').value.trim();
         const contact = document.getElementById('repContact').value.trim();
@@ -1133,6 +1198,7 @@
             id: Date.now(),
             target: dId,
             time: dTime,
+            reason: reason,
             evidence: ev,
             description: desc,
             contact: contact,
@@ -1160,7 +1226,7 @@
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:start;">
                     <div>
-                        <h4 style="color:#e74c3c">Report against: ${r.target}</h4>
+                        <h4 style="color:#e74c3c">${r.reason} - ${r.target}</h4>
                         <p style="font-size:0.8rem; color:#8b9eb3;">Occurred: ${r.time.replace('T', ' ')}</p>
                     </div>
                     <span class="badge ${r.status === 'Resolved' ? 'badge-approved' : 'badge-pending'}">${r.status}</span>
@@ -1240,6 +1306,87 @@
         start.value = ""; end.value = ""; res.value = "";
         openModal('Success', 'LOA sent.');
         renderDriverLoa();
+    }
+
+    function submitDriverFeedback() {
+        const topic = document.getElementById('feedTopic').value;
+        const msg = document.getElementById('feedMsg').value;
+        if(!msg.trim()) return openModal('Error', 'Please enter a message.');
+        
+        // Push feedback to state
+        state.feedbacks.unshift({
+            id: Date.now(),
+            driver: currentUser.id,
+            topic: topic,
+            message: msg,
+            time: new Date().toLocaleString()
+        });
+
+        document.getElementById('feedMsg').value = "";
+        
+        if(topic === 'Public Testimonial') {
+            openModal('Testimonial Sent', 'Your review has been posted to the home page!');
+            renderPublicTestimonials(); // Update home page immediately
+        } else {
+            openModal('Feedback Sent', 'Thank you for your feedback. Management will review it.');
+        }
+    }
+
+    // NEW FUNCTION FOR HOME PAGE TESTIMONIALS
+    function renderPublicTestimonials() {
+        const container = document.getElementById('publicTestimonials');
+        // Filter only Public Testimonials
+        const testimonials = state.feedbacks.filter(f => f.topic === 'Public Testimonial');
+        
+        if (testimonials.length === 0) {
+             container.innerHTML = "<p style='color:#8b9eb3; text-align:center; grid-column: 1/-1;'>No testimonials yet. Log in to the driver portal to add yours!</p>";
+             return;
+        }
+
+        // Limit to most recent 4 for design sanity
+        const recent = testimonials.slice(0, 4);
+
+        container.innerHTML = recent.map(t => `
+            <div class="feature-item" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                    <span style="font-size:2rem; color:#4a6a8c; line-height:1;">"</span>
+                    <p style="font-style:italic; margin-top:-10px; margin-bottom:15px;">${t.message}</p>
+                </div>
+                <div style="border-top:1px solid #30363d; padding-top:10px; margin-top:10px;">
+                    <strong style="color: #4a6a8c;">- ${t.driver}</strong>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderAdminFeedback() {
+        const container = document.getElementById('adminFeedbackList');
+        container.innerHTML = state.feedbacks.length ? "" : "<p style='color:#8b9eb3;'>No feedback submitted.</p>";
+        
+        state.feedbacks.forEach(f => {
+            container.innerHTML += `
+                <div class="card" style="padding: 20px;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <div>
+                            <h4 style="color:#4a6a8c; margin-bottom:5px;">${f.topic}</h4>
+                            <p style="color:#8b9eb3; font-size:0.85rem;">Submitted by: <strong style="color:white;">${f.driver}</strong></p>
+                        </div>
+                        <small style="color:#8b9eb3">${f.time}</small>
+                    </div>
+                    <div style="margin:15px 0; background:#0d1117; padding:15px; border-radius:6px; font-size:0.9rem; border: 1px solid #30363d;">
+                        ${f.message}
+                    </div>
+                    <div style="text-align:right;">
+                        <button class="btn btn-danger btn-sm" onclick="deleteFeedback(${f.id})">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function deleteFeedback(id) {
+        state.feedbacks = state.feedbacks.filter(f => f.id !== id);
+        renderAdminFeedback();
     }
 
     function renderDriverLoa() {
@@ -1325,7 +1472,7 @@
 
     function renderAdminLogs() {
         const body = document.getElementById('adminGlobalList');
-        body.innerHTML = state.logs.map(l => `<tr><td>${l.driver}</td><td>${l.start} to ${l.end}</td><td>${l.cargo}</td><td><button onclick="deleteAdminLog(${l.id})" class="btn btn-danger btn-sm">X</button></td></tr>`).join('');
+        body.innerHTML = state.logs.map(l => `<tr><td>${l.driver}</td><td>${l.start}</td><td>${l.end}</td><td>${l.cargo}</td><td>${l.time}h</td><td>$${parseFloat(l.income).toLocaleString()}</td><td><button onclick="deleteAdminLog(${l.id})" class="btn btn-danger btn-sm">X</button></td></tr>`).join('');
     }
 
     function deleteAdminLog(id) {
@@ -1400,10 +1547,14 @@
     }
 
     function applyHeroBackgrounds() {
-        document.getElementById('homeHero').style.backgroundImage = `url('${state.assets.homeHero}')`;
-        document.getElementById('companyHero').style.backgroundImage = `url('${state.assets.companyHero}')`;
-        document.getElementById('partnerHero').style.backgroundImage = `url('${state.assets.partnerHero}')`;
-        document.getElementById('reportHero').style.backgroundImage = `url('${state.assets.reportHero}')`;
+        const setBg = (id, url) => {
+            const el = document.getElementById(id);
+            if(el) el.style.backgroundImage = `url('${url}')`;
+        };
+        setBg('homeHero', state.assets.homeHero);
+        setBg('companyHero', state.assets.companyHero);
+        setBg('partnerHero', state.assets.partnerHero);
+        setBg('reportHero', state.assets.reportHero);
     }
 
     function updatePublicCounters() {
@@ -1451,7 +1602,11 @@
         }
     }
 
-    window.onload = () => { applyHeroBackgrounds(); updatePublicCounters(); };
+    window.onload = () => { 
+        applyHeroBackgrounds(); 
+        updatePublicCounters();
+        renderPublicTestimonials(); // Initial render
+    };
 </script>
 </body>
 </html>
