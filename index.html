@@ -142,10 +142,14 @@
 
         .recruit-image {
             width: 100%;
+            height: 150px; /* Constrain height to keep modal tidy */
+            object-fit: contain;
             border-radius: 2px;
             margin-bottom: 20px;
             border: 1px solid rgba(74, 166, 140, 0.3);
             filter: brightness(0.9) contrast(1.1);
+            background: rgba(0,0,0,0.3); /* Dark background for logo visibility */
+            padding: 10px;
         }
 
         .recruit-content h3 {
@@ -210,7 +214,7 @@
         .join-option.disabled span { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
 
         .join-option.disabled::after {
-            content: 'DEV_LOCK';
+            content: 'COMING SOON!';
             position: absolute;
             top: 5px; right: 5px;
             font-size: 0.5rem;
@@ -331,6 +335,164 @@
         .insight-card li { margin-bottom: 8px; color: #cfd8e3; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px; }
         .insight-card li::before { content: "•"; color: #4a6a8c; font-weight: bold; }
 
+        /* --- HOME VIEW CLEANUP --- */
+        #homeView .content-section {
+            margin-top: 40px; /* Spaced out from hero */
+            max-width: 1200px;
+        }
+
+        #homeView .card {
+            background: transparent; /* Remove heavy card background */
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 80px;
+        }
+
+        .home-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .home-feature-item {
+            background: rgba(22, 27, 34, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .home-feature-item:hover {
+            transform: translateY(-8px);
+            border-color: #4a6a8c;
+            background: rgba(22, 27, 34, 0.9);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .home-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .home-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .home-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #4a6a8c;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Override feature item style within home view for consistency */
+        #homeView .feature-item {
+            background: rgba(22, 27, 34, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+        #homeView .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: #4a6a8c;
+        }
+
+        /* --- CONVOY CARDS --- */
+        .convoy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .convoy-card {
+            background: #1c2128;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .convoy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: #4a6a8c;
+        }
+
+        .convoy-header {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .convoy-header::before {
+            content: '';
+            position: absolute; inset:0;
+            background: linear-gradient(to bottom, transparent, #1c2128);
+        }
+
+        .convoy-date-box {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid #4a6a8c;
+            border-radius: 8px;
+            padding: 5px 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .convoy-day { font-size: 1.4rem; font-weight: 800; color: #fff; line-height: 1; }
+        .convoy-month { font-size: 0.7rem; text-transform: uppercase; color: #4a6a8c; font-weight: bold; }
+
+        .convoy-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        
+        .convoy-title { font-size: 1.2rem; font-weight: bold; color: white; margin-bottom: 10px; }
+        
+        .convoy-meta {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; color: #8b9eb3; margin-bottom: 5px;
+        }
+        
+        .convoy-meta span { display: flex; align-items: center; gap: 5px; }
+
+        .convoy-route-vis {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(13, 17, 23, 0.5);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .route-arrow { color: #4a6a8c; font-weight: bold; }
+
+
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
             header {
@@ -362,7 +524,7 @@
             .hero { height: 50vh; }
             .hero-title { font-size: 2rem; }
             
-            .content-section { margin-top: -20px; }
+            .content-section { margin-top: 0; }
             .card { padding: 20px; }
 
             /* Collapse Grids */
@@ -477,12 +639,13 @@
         <a onclick="showView('home')">Home</a>
         <a onclick="showView('company')">About us</a>
         <a onclick="showView('partnership')">Partnerships</a>
+        <a onclick="showView('convoy')">Convoys</a> <!-- Added Convoys Link -->
         <a onclick="showView('report')">Report a Driver</a>
         <a onclick="showView('login')" class="portal-btn">Driver Portal</a>
     </nav>
 </header>
 
-<!-- HOME VIEW -->
+<!-- HOME VIEW (CLEANED UP) -->
 <div id="homeView" class="page-view active">
     <section class="hero" id="homeHero">
         <h1 class="hero-title">NorthStar Logistics</h1>
@@ -491,58 +654,80 @@
             <button class="btn btn-primary" onclick="showJoinInstructions()">Join Our Fleet</button>
         </div>
     </section>
+    
     <div class="content-section">
+        <!-- FEATURES SECTION -->
         <div class="card">
-            <h2 style="text-align: center; margin-bottom: 20px;">Why Drive With Us?</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
+            <h2 class="home-title">Why Drive With Us?</h2>
+            <div class="home-features">
+                <div class="home-feature-item">
+                    <span class="home-icon">👔</span>
                     <h3>Professionalism</h3>
-                    <p>We take our operations seriously while maintaining a fun atmosphere for all drivers.</p>
+                    <p style="color: #8b9eb3; font-size: 0.9rem; margin-top: 10px;">We take our operations seriously while maintaining a fun atmosphere for all drivers.</p>
                 </div>
-                <div class="feature-item">
+                <div class="home-feature-item">
+                    <span class="home-icon">🤝</span>
                     <h3>Community</h3>
-                    <p>Join a group of like-minded individuals who share a passion for the open road.</p>
+                    <p style="color: #8b9eb3; font-size: 0.9rem; margin-top: 10px;">Join a group of like-minded individuals who share a passion for the open road.</p>
                 </div>
-                <div class="feature-item">
+                <div class="home-feature-item">
+                    <span class="home-icon">📈</span>
                     <h3>Growth</h3>
-                    <p>Rank up through our driver levels and take on more challenging specialized hauls.</p>
+                    <p style="color: #8b9eb3; font-size: 0.9rem; margin-top: 10px;">Rank up through our driver levels and take on more challenging specialized hauls.</p>
                 </div>
-                <div class="feature-item">
+                <div class="home-feature-item">
+                    <span class="home-icon">🚀</span>
                     <h3>You</h3>
-                    <p>We need you to help us grow you joining our staff team or driver help us more and more.</p>
+                    <p style="color: #8b9eb3; font-size: 0.9rem; margin-top: 10px;">We need you to help us grow. Join our staff team or drive to help us expand.</p>
                 </div>
             </div>
         </div>
 
-        <!-- NEW TESTIMONIALS SECTION -->
-        <div class="card" style="margin-top: 30px;">
-            <h2 style="text-align: center; margin-bottom: 20px;">What Our Drivers Say</h2>
-            <div id="publicTestimonials" class="feature-grid">
+        <!-- TESTIMONIALS SECTION -->
+        <div class="card">
+            <h2 class="home-title">What Our Drivers Say</h2>
+            <div id="publicTestimonials" class="home-features">
                 <!-- Dynamically populated from Javascript -->
             </div>
         </div>
     </div>
 </div>
 
-<!-- COMPANY INFO VIEW (RESTORED) -->
+<!-- COMPANY INFO VIEW (EXPANDED) -->
 <div id="companyView" class="page-view">
     <section class="hero" id="companyHero">
         <h1 class="hero-title">Our Organization</h1>
         <p class="hero-sub">Founded on the principles of integrity and safety.</p>
     </section>
     <div class="content-section">
-        <div class="card">
-            <h2>About NorthStar</h2>
-            <p style="margin-top: 15px; color: #8b9eb3;">NorthStar Logistics started as a small group of friends and has grown into a respected Virtual Trucking Company. Our mission is to provide the most realistic logistics experience in the VTC.</p>
+        <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
+            <h2 style="text-align: center; margin-bottom: 30px;">Who We Are</h2>
             
-            <div class="responsive-grid" style="margin-top: 30px;">
-                <div class="feature-item">
-                    <h4 style="color:#4a6a8c">Company Drivers</h4>
-                    <h2 id="dispDrivers">0</h2>
+            <div style="margin-bottom: 30px; text-align: left; color: #cfd8e3; font-size: 0.95rem; line-height: 1.8;">
+                <p style="margin-bottom: 15px;">
+                    NorthStar Logistics was established in 2025 by a dedicated team of simulation enthusiasts. What began as a small convoy of friends exploring the virtual roads of Europe and America has evolved into a premier Virtual Trucking Company (VTC) known for its professionalism and welcoming community.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    We operate primarily within <strong>Euro Truck Simulator 2</strong> and <strong>American Truck Simulator</strong>, coordinating complex logistics operations, large-scale convoys, and competitive events. Our drivers are the heart of our organization, representing us on the virtual highways with skill and courtesy.
+                </p>
+                <p>
+                    Whether you are a casual driver looking for a relaxing evening haul or a hardcore simulation expert aiming for the top of the leaderboards, NorthStar provides the infrastructure, dispatch systems, and community support to enhance your experience. We value <strong>integrity</strong>, <strong>safety</strong>, and most importantly, having <strong>fun</strong> together.
+                </p>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;"></div>
+
+            <h3 style="text-align: center; margin-bottom: 20px; color: #4a6a8c;">Live Statistics</h3>
+            <div class="responsive-grid">
+                <div class="feature-item" style="text-align: center;">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">🚛</span>
+                    <h4 style="color:#4a6a8c">Active Drivers</h4>
+                    <h2 id="dispDrivers" style="font-size: 2.5rem;">0</h2>
                 </div>
-                <div class="feature-item">
+                <div class="feature-item" style="text-align: center;">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">📦</span>
                     <h4 style="color:#4a6a8c">Jobs Completed</h4>
-                    <h2 id="dispJobs">0</h2>
+                    <h2 id="dispJobs" style="font-size: 2.5rem;">0</h2>
                 </div>
             </div>
         </div>
@@ -556,11 +741,25 @@
         <p class="hero-sub">Collaborating with the best in the VTC industry to help others.</p>
     </section>
     <div class="content-section">
-        <div class="card">
+        <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
             <h2 style="margin-bottom: 20px;">Affiliated Companies</h2>
             <div id="publicPartnerGrid" class="feature-grid">
                 <!-- Dynamically populated -->
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONVOY VIEW (NEW) -->
+<div id="convoyView" class="page-view">
+    <section class="hero" id="convoyHero" style="background-image: url('https://images.unsplash.com/photo-1605218427306-0396d812068d?auto=format&fit=crop&q=80&w=2000');">
+        <h1 class="hero-title">Event Convoys</h1>
+        <p class="hero-sub">Join us on the open road. Check our schedule for official company convoys and events.</p>
+    </section>
+    
+    <div class="content-section">
+        <div id="publicConvoyGrid" class="convoy-grid">
+            <!-- Dynamically populated by JS -->
         </div>
     </div>
 </div>
@@ -572,7 +771,7 @@
         <p class="hero-sub">Help us maintain our professional standards. Submit reports for reckless driving or misused tags, livery.</p>
     </section>
     <div class="content-section">
-        <div class="card">
+        <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
             <h2>Driver Conduct Report</h2>
             <p style="margin: 10px 0 25px; color: #8b9eb3; font-size: 0.9rem;">Please provide as much detail as possible. False reports may lead to a permanent ban from our community servers.</p>
             
@@ -663,6 +862,24 @@
 
             <!-- DASHBOARD TAB (HOME) -->
             <div id="tabDDash" class="tab-content active">
+                <!-- RANK PROGRESS BAR SECTION (NEW) -->
+                <div class="card" style="margin-bottom: 20px; background: #161b22; border: 1px solid rgba(255,255,255,0.05); padding: 25px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:flex-end;">
+                        <div>
+                            <h4 style="color:#4a6a8c; margin-bottom: 2px;">Career Progress</h4>
+                            <div style="font-size:0.8rem; color:#8b9eb3;">Next Promotion: <strong id="nextRankName" style="color:white">Junior Driver</strong></div>
+                        </div>
+                        <span id="rankProgressText" style="font-size:1.1rem; font-weight:bold; color:white;">0 / 5 Jobs</span>
+                    </div>
+                    <div style="background:#0d1117; height:12px; border-radius:6px; overflow:hidden; border: 1px solid #30363d;">
+                        <div id="rankProgressBar" style="width:0%; height:100%; background: linear-gradient(90deg, #4a6a8c, #00f2ff); transition: width 1s ease-in-out; box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top:5px; font-size:0.7rem; color:#484f58;">
+                        <span>Current Rank</span>
+                        <span>Target</span>
+                    </div>
+                </div>
+
                 <div class="tips-grid">
                     <div class="tip-box">
                         <h5>Pro Tip #1</h5>
@@ -679,7 +896,7 @@
                 </div>
 
                 <div style="margin-top:30px;">
-                    <div class="card">
+                    <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                         <h3 style="margin-bottom:15px; color:#4a6a8c">Live Fleet Bulletin</h3>
                         <div id="driverBulletinBoard"></div>
                     </div>
@@ -689,7 +906,7 @@
             <!-- SUBMIT LOG TAB -->
             <div id="tabDLog" class="tab-content">
                 <h2>New Delivery Job</h2>
-                <div class="card" style="margin-top: 20px;">
+                <div class="card" style="margin-top: 20px; background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <div class="responsive-grid">
                         <div class="input-group"><label>Source City</label><input type="text" id="jobStart" placeholder="City, Country"></div>
                         <div class="input-group"><label>Destination</label><input type="text" id="jobEnd" placeholder="City, Country"></div>
@@ -749,7 +966,7 @@
             <!-- LOA TAB -->
             <div id="tabDLoa" class="tab-content">
                 <h2>Request Leave of Absence (LOA)</h2>
-                <div class="card" style="margin-top: 20px;">
+                <div class="card" style="margin-top: 20px; background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <p style="color: #8b9eb3; margin-bottom: 20px; font-size: 0.9rem;">Absences longer than 7 days require management approval.</p>
                     <div class="responsive-grid">
                         <div class="input-group"><label>Start Date</label><input type="date" id="loaStart"></div>
@@ -784,7 +1001,7 @@
             <!-- FEEDBACK TAB -->
             <div id="tabDFeedback" class="tab-content">
                 <h2>Driver Feedback & Testimonials</h2>
-                <div class="card" style="margin-top: 20px;">
+                <div class="card" style="margin-top: 20px; background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <p style="margin-bottom: 20px; color: #8b9eb3;">Submit internal feedback or share a public testimonial for the home page.</p>
                     <div class="input-group">
                         <label>Topic</label>
@@ -803,8 +1020,6 @@
                     <button class="btn btn-primary" style="width:100%" onclick="submitDriverFeedback()">Send Feedback</button>
                 </div>
             </div>
-
-            <!-- (REMOVED INTERNAL REPORT TAB AS REQUESTED) -->
         </main>
     </div>
 </div>
@@ -816,6 +1031,7 @@
             <h2 style="font-size: 1rem; color: #e74c3c; margin-bottom: 20px;">MANAGEMENT</h2>
             <button class="sidebar-btn active" id="btnADrivers" onclick="switchTab('admin', 'drivers')">Drivers</button>
             <button class="sidebar-btn" id="btnABulletins" onclick="switchTab('admin', 'bulletins')">Bulletins</button>
+            <button class="sidebar-btn" id="btnAConvoys" onclick="switchTab('admin', 'convoys')">Convoys</button> <!-- NEW -->
             <button class="sidebar-btn" id="btnAReports" onclick="switchTab('admin', 'reports')">
                 Reports <span class="sidebar-badge" id="reportBadge" style="display:none">0</span>
             </button>
@@ -839,19 +1055,19 @@
             <div id="tabADrivers" class="tab-content active">
                 <h2>Personnel & Stats Management</h2>
                 <div class="responsive-grid">
-                    <div class="card" style="border: 1px solid #4a6a8c;">
+                    <div class="card" style="border: 1px solid #4a6a8c; background: #161b22;">
                         <h4 style="color:#4a6a8c; margin-bottom:10px;">Company Overview Stats</h4>
                         <div class="input-group">
-                            <label>Active Drivers Count</label>
+                            <label>Active Drivers Count (Manual Offset)</label>
                             <input type="number" id="editActiveDrivers" value="0">
                         </div>
                         <div class="input-group">
-                            <label>Jobs Completed Count</label>
+                            <label>Jobs Completed Count (Manual Offset)</label>
                             <input type="number" id="editJobsCompleted" value="0">
                         </div>
                         <button class="btn btn-primary" onclick="updateManualStats()" style="width:100%">Save Public Stats</button>
                     </div>
-                    <div class="card">
+                    <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                         <h4>Create New Driver Account</h4>
                         <div class="input-group">
                             <label>New Driver ID</label>
@@ -873,23 +1089,37 @@
             <!-- BULLETIN MANAGEMENT TAB -->
             <div id="tabABulletins" class="tab-content">
                 <h2>Bulletin Board Management</h2>
-                <p style="color:#8b9eb3; margin-bottom:20px;">Announcements posted here will appear instantly on all driver dashboards.</p>
-                
-                <div class="card">
+                <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <h4>Post New Bulletin</h4>
-                    <div class="input-group">
-                        <label>Title</label>
-                        <input type="text" id="bulTitle" placeholder="e.g. Weekly Convoy">
-                    </div>
-                    <div class="input-group">
-                        <label>Message Content</label>
-                        <textarea id="bulBody" rows="3" placeholder="Enter details..."></textarea>
-                    </div>
+                    <div class="input-group"><label>Title</label><input type="text" id="bulTitle"></div>
+                    <div class="input-group"><label>Message Content</label><textarea id="bulBody" rows="3"></textarea></div>
                     <button id="btnPostBulletin" class="btn btn-primary" onclick="addBulletin()">Publish to Fleet</button>
                 </div>
-
                 <h3 style="margin-top:30px;">Active Bulletins</h3>
                 <div id="adminBulletinList" style="margin-top:15px; display:grid; gap:15px;"></div>
+            </div>
+
+            <!-- CONVOY MANAGEMENT TAB (NEW) -->
+            <div id="tabAConvoys" class="tab-content">
+                <h2>Convoy Management</h2>
+                <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
+                    <h4>Schedule New Convoy</h4>
+                    <div class="responsive-grid">
+                        <div class="input-group"><label>Event Title</label><input type="text" id="convoyTitle" placeholder="e.g. Friday Night Haul"></div>
+                        <div class="input-group"><label>Date & Time</label><input type="datetime-local" id="convoyDate"></div>
+                    </div>
+                    <div class="responsive-grid">
+                        <div class="input-group"><label>Start City</label><input type="text" id="convoyStart" placeholder="e.g. Calais"></div>
+                        <div class="input-group"><label>End City</label><input type="text" id="convoyEnd" placeholder="e.g. Duisburg"></div>
+                    </div>
+                    <div class="responsive-grid">
+                        <div class="input-group"><label>Server</label><input type="text" id="convoyServer" placeholder="e.g. Sim 1"></div>
+                        <div class="input-group"><label>Image URL (Optional)</label><input type="text" id="convoyImg" placeholder="https://..."></div>
+                    </div>
+                    <button id="btnSaveConvoy" class="btn btn-success" onclick="saveConvoy()" style="width:100%">Publish Event</button>
+                </div>
+                <h3 style="margin-top:30px;">Scheduled Convoys</h3>
+                <div id="adminConvoyList" style="margin-top:15px; display:grid; gap:15px;"></div>
             </div>
 
             <div id="tabAReports" class="tab-content">
@@ -935,7 +1165,7 @@
 
             <div id="tabAPartners" class="tab-content">
                 <h2>Manage Affiliated Companies</h2>
-                <div class="card" style="margin: 20px 0;">
+                <div class="card" style="margin: 20px 0; background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <h4>Add New Partner</h4>
                     <div class="responsive-grid" style="margin-top:15px;">
                         <div class="input-group"><label>Partner Name</label><input type="text" id="partnerNameInput"></div>
@@ -954,7 +1184,7 @@
 
             <div id="tabABranding" class="tab-content">
                 <h2>Update Page Assets</h2>
-                <div class="card">
+                <div class="card" style="background: #161b22; border: 1px solid rgba(255,255,255,0.05);">
                     <div class="input-group"><label>Home Hero (URL)</label><input type="text" id="heroHomeUrl"></div>
                     <div class="input-group"><label>Company Hero (URL)</label><input type="text" id="heroCompanyUrl"></div>
                     <div class="input-group"><label>Partner Hero (URL)</label><input type="text" id="heroPartnerUrl"></div>
@@ -970,7 +1200,7 @@
 <div id="recruitModal" class="recruit-modal">
     <div class="recruit-content">
         <h3 style="margin-bottom: 15px;">Join Our Fleet</h3>
-        <img src="image_c14365.png" alt="NorthStar Logistics Recruitment" class="recruit-image">
+        <img src="NSL_CLEAR_NO_TEXT.jpg" alt="NorthStar Logistics Recruitment" class="recruit-image">
         <div class="join-btn-container">
             <a href="https://hub.truckyapp.com/vtc/northstar-logistics" target="_blank" class="join-option">
                 <strong>Trucky Hub</strong>
@@ -993,6 +1223,7 @@
 
 <script>
     let editingBulletinId = null;
+    let editingConvoyId = null;
 
     const state = {
         drivers: [], 
@@ -1000,16 +1231,24 @@
         loas: [], 
         forgotRequests: [],
         reports: [],
-        feedbacks: [
-            // Pre-populated testimonial example
-            { id: 99, driver: "Driver_Admin", topic: "Public Testimonial", message: "This is the best VTC I have ever been a part of. Great community!", time: "12/12/2024" }
-        ], 
+        feedbacks: [],
+        convoys: [
+            {
+                id: 1, 
+                title: "Grand Opening Convoy",
+                date: "2025-06-15T19:00",
+                start: "London",
+                end: "Berlin",
+                server: "Sim 1",
+                img: "https://images.unsplash.com/photo-1605218427306-0396d812068d?auto=format&fit=crop&q=80&w=1000"
+            }
+        ],
         bulletins: [
             { id: 1, title: "Company Convoy: Weekend Run", body: "Meeting at Berlin Garage this Saturday. Be there with a clean rig!" },
             { id: 2, title: "Economy Update", body: "Cargo rates for heavy machinery have increased by 5% this week." }
         ],
         admins: [{ id: "e", pass: "e", rank: "Owner" }],
-        ranks: ["Trainee", "Junior Driver", "Driver"],
+        ranks: ["Trainee", "Junior Driver", "Driver", "Pro Driver", "God Driver", "God Hauler", "Legendary Hauler", ],
         manualStats: { drivers: 0, jobs: 0 },
         assets: {
             homeHero: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=2000',
@@ -1030,16 +1269,19 @@
 
         document.getElementById('mainHeader').style.display = viewId.includes('Panel') ? 'none' : 'flex';
         
-        if (viewId === 'home') renderPublicTestimonials(); // Added render call
+        if (viewId === 'home') renderPublicTestimonials(); 
         if (viewId === 'partnership') renderPublicPartners();
         if (viewId === 'company') updatePublicCounters();
+        if (viewId === 'convoy') renderPublicConvoys(); // Render convoys
+        
         if (viewId === 'adminPanel') {
             document.getElementById('adminWelcomeMsg').innerText = `Welcome, ${currentUser.id}`;
             renderAdminDrivers();
             renderAdminForgot();
             renderAdminReports();
             renderAdminBulletins();
-            renderAdminFeedback(); // Initial render for feedback
+            renderAdminFeedback(); 
+            renderAdminConvoys(); // Render convoys in admin
             document.getElementById('editActiveDrivers').value = state.manualStats.drivers;
             document.getElementById('editJobsCompleted').value = state.manualStats.jobs;
             document.getElementById('heroHomeUrl').value = state.assets.homeHero;
@@ -1053,6 +1295,7 @@
             document.getElementById('driverWelcomeMsg').innerText = `Welcome, ${currentUser.id}`;
             document.getElementById('sidebarDriverRank').innerText = `Rank: ${currentUser.rank || 'Trainee'}`;
             renderDriverBulletins();
+            renderRankProgress(); 
             switchTab('driver', 'dash');
         }
         
@@ -1072,6 +1315,7 @@
         const tabElem = document.getElementById(tabId);
         if(tabElem) tabElem.classList.add('active');
         
+        if (tab === 'dash' && panel === 'driver') renderRankProgress(); 
         if (tab === 'history') renderDriverHistory();
         if (tab === 'loa' && panel === 'driver') renderDriverLoa();
         if (tab === 'loa' && panel === 'admin') renderAdminLoa();
@@ -1081,7 +1325,8 @@
         if (tab === 'partners') renderAdminPartners();
         if (tab === 'reports') renderAdminReports();
         if (tab === 'bulletins') renderAdminBulletins();
-        if (tab === 'feedback') renderAdminFeedback(); // Render feedback when tab is clicked
+        if (tab === 'feedback') renderAdminFeedback(); 
+        if (tab === 'convoys') renderAdminConvoys(); // Handle new tab
     }
 
     function setAuthMode(mode) {
@@ -1110,6 +1355,119 @@
     }
 
     function logout() { currentUser = null; showView('home'); }
+
+    // --- CONVOY SYSTEM ---
+    function renderPublicConvoys() {
+        const grid = document.getElementById('publicConvoyGrid');
+        if(state.convoys.length === 0) {
+            grid.innerHTML = "<p style='text-align:center; color:#8b9eb3; grid-column:1/-1'>No upcoming convoys scheduled.</p>";
+            return;
+        }
+
+        grid.innerHTML = state.convoys.map(c => {
+            const d = new Date(c.date);
+            const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const img = c.img || "https://images.unsplash.com/photo-1605218427306-0396d812068d?auto=format&fit=crop&q=80&w=1000"; // Fallback image
+
+            return `
+            <div class="convoy-card">
+                <div class="convoy-header" style="background-image: url('${img}')">
+                    <div class="convoy-date-box">
+                        <div class="convoy-day">${d.getDate()}</div>
+                        <div class="convoy-month">${months[d.getMonth()]}</div>
+                    </div>
+                </div>
+                <div class="convoy-body">
+                    <div class="convoy-title">${c.title}</div>
+                    <div class="convoy-meta">
+                        <span>🕒 ${d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                        <span>🖥️ ${c.server}</span>
+                    </div>
+                    <div class="convoy-route-vis">
+                        <span>${c.start}</span>
+                        <span class="route-arrow">➔</span>
+                        <span>${c.end}</span>
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="width:100%; margin-top:auto;" onclick="openModal('Join Convoy', 'Please join our Discord if you wish to participate in this convoy! ')">Attend Event</button>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderAdminConvoys() {
+        const list = document.getElementById('adminConvoyList');
+        list.innerHTML = state.convoys.map(c => `
+            <div class="card" style="padding:15px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <strong>${c.title}</strong>
+                    <div style="font-size:0.8rem; color:#8b9eb3;">${c.start} -> ${c.end} | ${new Date(c.date).toLocaleDateString()}</div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-primary btn-sm" onclick="editConvoy(${c.id})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteConvoy(${c.id})">Delete</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function saveConvoy() {
+        const title = document.getElementById('convoyTitle').value;
+        const date = document.getElementById('convoyDate').value;
+        const start = document.getElementById('convoyStart').value;
+        const end = document.getElementById('convoyEnd').value;
+        const server = document.getElementById('convoyServer').value;
+        const img = document.getElementById('convoyImg').value;
+
+        if(!title || !date || !start || !end) return openModal('Error', 'Missing required fields.');
+
+        const convoyData = {
+            id: editingConvoyId ? editingConvoyId : Date.now(),
+            title, date, start, end, server, img
+        };
+
+        if(editingConvoyId) {
+            const idx = state.convoys.findIndex(c => c.id === editingConvoyId);
+            if(idx !== -1) state.convoys[idx] = convoyData;
+            editingConvoyId = null;
+            document.getElementById('btnSaveConvoy').innerText = "Publish Event";
+            document.getElementById('btnSaveConvoy').className = "btn btn-success";
+        } else {
+            state.convoys.push(convoyData);
+        }
+
+        // Clear Form
+        document.getElementById('convoyTitle').value = "";
+        document.getElementById('convoyDate').value = "";
+        document.getElementById('convoyStart').value = "";
+        document.getElementById('convoyEnd').value = "";
+        document.getElementById('convoyServer').value = "";
+        document.getElementById('convoyImg').value = "";
+
+        renderAdminConvoys();
+        openModal('Success', 'Convoy updated successfully.');
+    }
+
+    function editConvoy(id) {
+        const c = state.convoys.find(x => x.id === id);
+        if(!c) return;
+
+        document.getElementById('convoyTitle').value = c.title;
+        document.getElementById('convoyDate').value = c.date;
+        document.getElementById('convoyStart').value = c.start;
+        document.getElementById('convoyEnd').value = c.end;
+        document.getElementById('convoyServer').value = c.server;
+        document.getElementById('convoyImg').value = c.img || "";
+
+        editingConvoyId = id;
+        const btn = document.getElementById('btnSaveConvoy');
+        btn.innerText = "Update Event";
+        btn.className = "btn btn-primary";
+    }
+
+    function deleteConvoy(id) {
+        state.convoys = state.convoys.filter(c => c.id !== id);
+        renderAdminConvoys();
+    }
 
     // --- BULLETIN SYSTEM ---
     function renderDriverBulletins() {
@@ -1286,8 +1644,90 @@
         document.getElementById('jobTime').value = "";
         document.getElementById('jobIncome').value = "";
 
-        openModal('Logged', 'Delivery recorded and sent to dispatch.');
+        // UPDATE PUBLIC COUNTERS INSTANTLY
+        updatePublicCounters();
+
+        // CHECK FOR PROMOTION
+        const newRankName = checkPromotion();
+
+        if (newRankName) {
+             openModal('🎉 PROMOTION!', `Excellent work, Driver! Delivery logged and you have been promoted to ${newRankName}.`);
+        } else {
+             openModal('Logged', 'Delivery recorded and sent to dispatch.');
+        }
+        
+        renderRankProgress();
         switchTab('driver', 'history');
+    }
+
+    // CHECK AND APPLY PROMOTION
+    function checkPromotion() {
+        if(!currentUser) return null;
+
+        const myJobs = state.logs.filter(l => l.driver === currentUser.id).length;
+        const currentRank = currentUser.rank || "Trainee";
+        const ranks = state.ranks; 
+        const thresholds = [0, 4, 15, 30, 50, 100, 240]; 
+
+        let calculatedRank = "Trainee";
+        
+        for (let i = thresholds.length - 1; i >= 0; i--) {
+            if (myJobs >= thresholds[i]) {
+                calculatedRank = ranks[i];
+                break;
+            }
+        }
+
+        if (calculatedRank !== currentRank) {
+            currentUser.rank = calculatedRank;
+            
+            const driverIdx = state.drivers.findIndex(d => d.id === currentUser.id);
+            if(driverIdx !== -1) {
+                state.drivers[driverIdx].rank = calculatedRank;
+            }
+
+            document.getElementById('sidebarDriverRank').innerText = `Rank: ${calculatedRank}`;
+            
+            return calculatedRank; 
+        }
+
+        return null; 
+    }
+
+    // RENDER RANK PROGRESS
+    function renderRankProgress() {
+        if(!currentUser) return;
+        
+        const myJobs = state.logs.filter(l => l.driver === currentUser.id).length;
+        const currentRankIdx = state.ranks.indexOf(currentUser.rank || "Trainee");
+        const nextRank = state.ranks[currentRankIdx + 1];
+        const thresholds = [0, 4, 15, 30, 50, 100, 240];
+        
+        const bar = document.getElementById('rankProgressBar');
+        const text = document.getElementById('rankProgressText');
+        const nextName = document.getElementById('nextRankName');
+        
+        if (!nextRank) {
+            bar.style.width = '100%';
+            text.innerText = `${myJobs} Jobs`;
+            nextName.innerText = "Max Rank Achieved";
+        } else {
+            const prevThreshold = thresholds[currentRankIdx] || 0;
+            const nextThreshold = thresholds[currentRankIdx + 1] || (prevThreshold + 10);
+            
+            let percent = 0;
+            if (myJobs >= nextThreshold) {
+                percent = 100;
+            } else {
+                const range = nextThreshold - prevThreshold;
+                const progress = Math.max(0, myJobs - prevThreshold); 
+                percent = Math.min(100, (progress / range) * 100);
+            }
+
+            bar.style.width = `${percent}%`;
+            text.innerText = `${myJobs} / ${nextThreshold} Jobs`;
+            nextName.innerText = nextRank;
+        }
     }
 
     function renderDriverHistory() {
@@ -1313,7 +1753,6 @@
         const msg = document.getElementById('feedMsg').value;
         if(!msg.trim()) return openModal('Error', 'Please enter a message.');
         
-        // Push feedback to state
         state.feedbacks.unshift({
             id: Date.now(),
             driver: currentUser.id,
@@ -1326,16 +1765,14 @@
         
         if(topic === 'Public Testimonial') {
             openModal('Testimonial Sent', 'Your review has been posted to the home page!');
-            renderPublicTestimonials(); // Update home page immediately
+            renderPublicTestimonials(); 
         } else {
             openModal('Feedback Sent', 'Thank you for your feedback. Management will review it.');
         }
     }
 
-    // NEW FUNCTION FOR HOME PAGE TESTIMONIALS
     function renderPublicTestimonials() {
         const container = document.getElementById('publicTestimonials');
-        // Filter only Public Testimonials
         const testimonials = state.feedbacks.filter(f => f.topic === 'Public Testimonial');
         
         if (testimonials.length === 0) {
@@ -1343,16 +1780,15 @@
              return;
         }
 
-        // Limit to most recent 4 for design sanity
         const recent = testimonials.slice(0, 4);
 
         container.innerHTML = recent.map(t => `
-            <div class="feature-item" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div class="home-feature-item" style="display:flex; flex-direction:column; justify-content:space-between; text-align:left;">
                 <div>
-                    <span style="font-size:2rem; color:#4a6a8c; line-height:1;">"</span>
-                    <p style="font-style:italic; margin-top:-10px; margin-bottom:15px;">${t.message}</p>
+                    <span style="font-size:3rem; color:#4a6a8c; line-height:0.5; display:block; margin-bottom:10px;">"</span>
+                    <p style="font-style:italic; margin-bottom:15px; color:#cfd8e3;">${t.message}</p>
                 </div>
-                <div style="border-top:1px solid #30363d; padding-top:10px; margin-top:10px;">
+                <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; margin-top:10px;">
                     <strong style="color: #4a6a8c;">- ${t.driver}</strong>
                 </div>
             </div>
@@ -1400,6 +1836,10 @@
         const i = document.getElementById('addDId'), p = document.getElementById('addDPass');
         if (!i.value || !p.value) return;
         state.drivers.push({ id: i.value, pass: p.value, rank: "Trainee" });
+        
+        // INSTANTLY UPDATE PUBLIC COUNTER
+        updatePublicCounters();
+        
         i.value = ""; p.value = ""; renderAdminDrivers();
     }
 
@@ -1424,6 +1864,8 @@
 
     function deleteAdminDriver(idx) {
         state.drivers.splice(idx, 1);
+        // UPDATE PUBLIC COUNTER ON DELETE
+        updatePublicCounters();
         renderAdminDrivers();
     }
 
@@ -1458,6 +1900,7 @@
     function updateManualStats() {
         state.manualStats.drivers = document.getElementById('editActiveDrivers').value;
         state.manualStats.jobs = document.getElementById('editJobsCompleted').value;
+        updatePublicCounters(); // Refresh visual
         openModal('Success', 'Stats updated.');
     }
 
@@ -1477,6 +1920,8 @@
 
     function deleteAdminLog(id) {
         state.logs = state.logs.filter(x => x.id !== id);
+        // UPDATE PUBLIC COUNTER ON DELETE
+        updatePublicCounters();
         renderAdminLogs();
     }
 
@@ -1558,8 +2003,14 @@
     }
 
     function updatePublicCounters() {
-        document.getElementById('dispDrivers').innerText = state.manualStats.drivers;
-        document.getElementById('dispJobs').innerText = state.manualStats.jobs;
+        // Calculate total: Manual Offset + Live Data
+        const liveDrivers = state.drivers.length;
+        const liveJobs = state.logs.length;
+        const manualDrivers = parseInt(state.manualStats.drivers) || 0;
+        const manualJobs = parseInt(state.manualStats.jobs) || 0;
+
+        document.getElementById('dispDrivers').innerText = manualDrivers + liveDrivers;
+        document.getElementById('dispJobs').innerText = manualJobs + liveJobs;
     }
 
     function adminAddPartner() {
